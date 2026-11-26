@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,6 +37,12 @@ public class Hotel {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @ManyToOne
+    private AppUser owner;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Room> rooms;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
